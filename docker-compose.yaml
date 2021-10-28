@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  mmdetection:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: volume
+        source: modules
+        target: /usr/local/lib/python3.7/site-packages
+      - type: bind
+        source: ./notebooks
+        target: /notebooks
+    ports:
+      - 10000:8888
+
+volumes:
+  modules:
+    driver_opts:
+      type: none
+      device: $PWD/site_packages
+      o: bind
+
