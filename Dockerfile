@@ -10,17 +10,14 @@ RUN pip install --no-cache-dir --default-timeout=1000 \
         torch \
         torchvision \
         torchaudio
-#
-# RUN pip install openmim
-#
-# RUN git clone https://github.com/open-mmlab/mmdetection.git
-#
-# WORKDIR mmdetection
-#
-# RUN pip install -r requirements/build.txt && \
-#     pip install "git+https://github.com/open-mmlab/cocoapi.git#subdirectory=pycocotools" && \
-#     pip install -v -e .
-#
+
+RUN git clone https://github.com/open-mmlab/mmdetection.git /mmdetection && \
+    cd /mmdetection && \
+    pip install openmim && \
+    pip install -r requirements/build.txt && \
+    pip install "git+https://github.com/open-mmlab/cocoapi.git#subdirectory=pycocotools" && \
+    pip install -v -e .
+
 WORKDIR /notebooks
 
 ENTRYPOINT ["jupyter"]
