@@ -1,1 +1,3 @@
 /site_packages
+/notebooks/*
+!/notebooks/.gitkeep
